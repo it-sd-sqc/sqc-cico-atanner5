@@ -41,6 +41,12 @@ public class Main {
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
+
+      String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
+      StringBuilder sb = new StringBuilder(currentText);
+      sb.insert(offset, stringToAdd);
+
+
       if (fb.getDocument() != null) {
         super.insertString(fb, offset, stringToAdd, attr);
       }
@@ -53,12 +59,21 @@ public class Main {
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
+      String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
+      StringBuilder sb = new StringBuilder(currentText);
+      sb.replace(offset, offset + lengthToDelete, stringToAdd);
+
       if (fb.getDocument() != null) {
         super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
       }
       else {
         Toolkit.getDefaultToolkit().beep();
       }
+    }
+    
+    private boolean isValidInput(String text) {
+      return text.matches("\\d*") && text.length() <= MAX_LENGTH;
+    
     }
   }
 
