@@ -62,6 +62,15 @@ public class Main {
     }
   }
 
+  public static class BypassTimer implements ActionListener {
+    public void actionPerformed(ActionEvent evt) {
+        if (timeout != null) {
+            timeout.cancel(); 
+        }
+        Main.doneProcessing(); 
+    }
+}
+
   // Lookup the card information after button press ///////////////////////////
   public static class Update implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
@@ -266,6 +275,7 @@ public class Main {
     updateButton.setForeground(Color.green);
     panelMain.add(updateButton);
 
+
     panelMain.add(Box.createVerticalGlue());
 
     // Status panel ///////////////////////////////////////////////////////////
@@ -281,7 +291,13 @@ public class Main {
     labelUser.setFont(fontMain);
     labelUser.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     labelUser.setForeground(Color.yellow);
-    panelStatus.add(labelUser);
+    panelStatus.add(labelUser);  
+    
+    JButton bypassButton = new JButton("OK");
+    bypassButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    bypassButton.addActionListener(new BypassTimer());
+    bypassButton.setForeground(Color.blue); 
+    panelStatus.add(bypassButton);
 
     labelState = new JLabel("updated", JLabel.LEADING);
     labelState.setFont(fontMain);
