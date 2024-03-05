@@ -22,3 +22,14 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * The status panel should appear after step 2.
 * The main panel should appear after step 3.
 
+# Module 6: Add a monochromatic color scheme
+
+## Test Steps
+1. Build and run CiCo
+
+## Expected Results:
+* The textbox should be gray instead of green
+* The text above the textbox should gray instead of cyan
+* The text inside the update box should be black instead of green
+* The screen should be green instead of blue upon successful check-in
+
